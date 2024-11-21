@@ -17,7 +17,7 @@ function getComputerChoice () {
 function getHumanChoice () {
     let choice;
     do {
-        choice = prompt("Enter Rock, Paper, or Scissors : ");
+        choice = prompt("Enter Rock, Paper or Scissors : ");
         if(choice !== null)
             choice = choice.toLowerCase();
     }
@@ -25,15 +25,12 @@ function getHumanChoice () {
     return choice;
 }
 
-let humanScore = 0;
-let computerScore = 0;
-
 function playRound (humanChoice, computerChoice) {
 
     let combination = humanChoice + computerChoice;
     let message;
-    let win = "You win ! ";
-    let lose = "You lose ! ";
+    let win = "You won this round ! ";
+    let lose = "You lost this round ! ";
     let paper = "Paper beats Rock.";
     let rock = "Rock beats Scissors.";
     let scissors = "Scissors beat Paper.";
@@ -71,8 +68,27 @@ function playRound (humanChoice, computerChoice) {
     console.log(message);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+let humanScore = 0;
+let computerScore = 0;
 
-playRound(humanSelection, computerSelection);
-console.log("Human score : " + humanScore + " and computer score : " + computerScore + ".");
+function playGame() {
+    let numberRounds = Number(prompt("How many rounds do you want to play ? "));
+    if (numberRounds !== 0){
+    while(humanScore !== numberRounds && computerScore !== numberRounds){
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+        console.log("Human score : " + humanScore + " and computer score : " + computerScore + ".");
+    }
+    if( humanScore == numberRounds)
+        console.log("You won the game ! ");
+    else if (computerScore == numberRounds )
+        console.log("You lost the game ! ");
+    }
+    else
+        console.log("You chose to cancel the game.");
+
+}
+
+playGame();
+
