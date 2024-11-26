@@ -90,5 +90,13 @@ function playGame() {
 
 }
 
-playGame();
+
+const computerChoice = getComputerChoice();
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => playRound(button.className, computerChoice));
+});
+
+
 
