@@ -1,2 +1,2 @@
 # Rock-Paper-Scissors
-This is a basic Rock-Paper-Scissors Human VS Computer game written in JavaScript and played entirely via the console. 
+This is a basic Rock-Paper-Scissors Human VS Computer game written in JavaScript and played entirely via the console in the first version. In the recent version, it is played on the page itself using the DOM. 
