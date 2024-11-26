@@ -14,17 +14,6 @@ function getComputerChoice () {
     return choice;
 }
 
-function getHumanChoice () {
-    let choice;
-    do {
-        choice = prompt("Enter Rock, Paper or Scissors : ");
-        if(choice !== null)
-            choice = choice.toLowerCase();
-    }
-    while (choice !== "rock" && choice !== "paper" && choice !== "scissors");
-    return choice;
-}
-
 function playRound (humanChoice, computerChoice) {
 
     let combination = humanChoice + computerChoice;
@@ -64,8 +53,14 @@ function playRound (humanChoice, computerChoice) {
             ++humanScore;
             break;
     }
-    console.log("The computer chose : " + computerChoice);
-    console.log(message);
+    const compChoicePara = document.createElement("p");
+    compChoicePara.textContent = `The computer chose : ${computerChoice}`;
+    const resultPara = document.createElement("p");
+    resultPara.textContent = message;
+    const resultDiv = document.querySelector(".results");
+    resultDiv.appendChild(resultPara);
+    resultDiv.appendChild(compChoicePara);
+
 }
 
 let humanScore = 0;
