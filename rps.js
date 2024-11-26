@@ -82,6 +82,7 @@ function playRound (humanChoice) {
         let finalMessage = "You won the game ! ";
         const body = document.querySelector("body");
         const finalPara = document.createElement("p");
+        finalPara.classList.add("finalPara");
         finalPara.textContent = finalMessage;
         body.appendChild(finalPara);
     }
