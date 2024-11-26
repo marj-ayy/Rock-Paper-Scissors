@@ -14,8 +14,20 @@ function getComputerChoice () {
     return choice;
 }
 
-function playRound (humanChoice, computerChoice) {
+let humanScore = 0;
+let computerScore = 0;
+const numberRounds = 5;
 
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {  
+    button.addEventListener("click", () => playRound(button.className));
+}); 
+
+const roundsPara = document.querySelector(".numberRounds");
+roundsPara.textContent = `The number of rounds you are going to play is : ${numberRounds}`;
+
+function playRound (humanChoice) {
+    let computerChoice = getComputerChoice();
     let combination = humanChoice + computerChoice;
     let message;
     let win = "You won this round ! ";
@@ -57,41 +69,30 @@ function playRound (humanChoice, computerChoice) {
     compChoicePara.textContent = `The computer chose : ${computerChoice}`;
     const resultPara = document.createElement("p");
     resultPara.textContent = message;
+    const scorePara = document.createElement("p");
+    scorePara.textContent = `Human Score : ${humanScore} /// Computer Score : ${computerScore}`;
     const resultDiv = document.querySelector(".results");
-    resultDiv.appendChild(resultPara);
     resultDiv.appendChild(compChoicePara);
+    resultDiv.appendChild(resultPara);
+    resultDiv.appendChild(scorePara);
 
-}
-
-let humanScore = 0;
-let computerScore = 0;
-
-function playGame() {
-    let numberRounds = Number(prompt("How many rounds do you want to play ? "));
-    if (numberRounds !== 0){
-    while(humanScore !== numberRounds && computerScore !== numberRounds){
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-        console.log("Human score : " + humanScore + " and computer score : " + computerScore + ".");
+    
+    //while(humanScore !== numberRounds && computerScore !== numberRounds){
+    if( humanScore == numberRounds){
+        let finalMessage = "You won the game ! ";
+        const body = document.querySelector("body");
+        const finalPara = document.createElement("p");
+        finalPara.textContent = finalMessage;
+        body.appendChild(finalPara);
     }
-    if( humanScore == numberRounds)
-        console.log("You won the game ! ");
-    else if (computerScore == numberRounds )
-        console.log("You lost the game ! ");
+    else if( computerScore == numberRounds){
+        let finalMessage = "You lost the game ! ";
+        const body = document.querySelector("body");
+        const finalPara = document.createElement("p");
+        finalPara.textContent = finalMessage;
+        body.appendChild(finalPara);
     }
-    else
-        console.log("You chose to cancel the game.");
-
 }
-
-
-const computerChoice = getComputerChoice();
-const buttons = document.querySelectorAll("button");
-
-buttons.forEach((button) => {
-    button.addEventListener("click", () => playRound(button.className, computerChoice));
-});
 
 
 
